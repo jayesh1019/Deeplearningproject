@@ -13,9 +13,9 @@ from Xray.entity.artifact_entity import(
 
 )
 
-from Xray.entity.config_entity import DataTrasform
+from Xray.entity.config_entity import DataTransformationConfig
 from Xray.exception import XRayException
-from xray.logger import logging
+from Xray.logger import logging
 
 
 class DataTransformation:
@@ -35,7 +35,7 @@ class DataTransformation:
                 [
                     transforms.Resize(self.data_transformation_config.RESIZE),
                     transforms.CenterCrop(self.data_transformation_config.CENTERCROP),
-                    transforms.ColorJitter(**self.data_transformation_config.color_jitter_transforms),
+                    transforms.ColorJitter(**self.data_transformation_config.color_jitter_transform),
                     transforms.RandomHorizontalFlip(),
                     transforms.RandomRotation(self.data_transformation_config.RANDOMROTATION),
                     transforms.ToTensor(),
@@ -74,7 +74,7 @@ class DataTransformation:
 
     
     def data_loader(
-        self , train_transform: transform.Compose, test_transform: transforms.Compose
+        self , train_transform: transforms.Compose, test_transform: transforms.Compose
     ) -> Tuple[DataLoader , DataLoader]:
         try:
             logging.info("Entered the data_loader method of Data Transformation class")
@@ -121,15 +121,15 @@ class DataTransformation:
             os.makedirs(self.data_transformation_config.artifact_dir , exist_ok=True)
 
             joblib.dump(
-                train_transform, self.data_transformation_config.train_transforms_file
+                train_transforms, self.data_transformation_config.train_transforms_file
             )
 
             joblib.dump(
-                test_transform, self.data_transformation_config.test_transforms_file
+                test_transforms, self.data_transformation_config.test_transforms_file
             )
 
             train_loader, test_loader = self.data_loader(
-                train_transform=train_transform , test_transform=test_transform
+                train_transform=train_transforms , test_transform=test_transforms
             )
 
             data_transformation_artifact: DataTransformationArtifact = DataTransformationArtifact(

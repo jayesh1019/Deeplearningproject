@@ -7,7 +7,7 @@ def start_training():
     try:
         train_pipeline = TrainPipeline()
 
-        train_pipelin.run_pipeline()
+        train_pipeline.run_pipeline()
 
     except Exception as e:
         raise XRayException(e , sys)

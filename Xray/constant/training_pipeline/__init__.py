@@ -3,21 +3,21 @@ from typing import List
 
 import torch
 
-TIMESTAMP: datetime=datetime.now().strftime("%m_%d_%Y_%H_%M_%S")
+TIMESTAMP: datetime = datetime.now().strftime("%m_%d_%Y_%H_%M_%S")
 
-#Data Ingestion Constants
 
-ARTIFACT_DIR: str="artifacts"
+# Data Ingestion Constants
+ARTIFACT_DIR: str = "artifacts"
 
-BUCKET_NAME: str="xraylungsimgs"
+BUCKET_NAME: str = "xraylungsimgs10"
 
-S3_DATA_FOLDER: str="data"
+S3_DATA_FOLDER: str = "data"
 
-# Data Transformation Constant 
 
-CLASS_LABEL_1: str="NORMAL"
+# data trasnforamtion
+CLASS_LABEL_1: str = "NORMAL"
 
-CLASS_LABEL_2: str="PNEUMONIA"
+CLASS_LABEL_2: str = "PNEUMONIA"
 
 BRIGHTNESS: int = 0.10
 
@@ -33,18 +33,20 @@ CENTERCROP: int = 224
 
 RANDOMROTATION: int = 10
 
-NORMALIZE_LIST_1: List[int] = [0.485 , 0.456 , 0.406]
+NORMALIZE_LIST_1: List[int] = [0.485, 0.456, 0.406]
 
-NORMALIZE_LIST_2: List[int] = [0.229 , 0.224 , 0.225]
+NORMALIZE_LIST_2: List[int] = [0.229, 0.224, 0.225]
 
 TRAIN_TRANSFORMS_KEY: str = "xray_train_transforms"
 
-TRAIN_TRANSFORMS_FILE: str = "train_transform.pkl"
+TRAIN_TRANSFORMS_FILE: str = "train_transforms.pkl"
 
-TEST_TRANSFORMS_FILE: str = "test_transform.pkl"
+TEST_TRANSFORMS_FILE: str = "test_transforms.pkl"
 
 BATCH_SIZE: int = 2
 
+SHUFFLE: bool = False
 
+PIN_MEMORY: bool = True
 
 
